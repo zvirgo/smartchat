@@ -2,7 +2,28 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title class="absolute-center"> {{ $route.name }} </q-toolbar-title>
+        <q-btn
+          v-if="$route.path === '/chat'"
+          to="/"
+          icon="arrow_back"
+          label="Back"
+          no-caps
+          flat
+          dense
+        />
+
+        <q-toolbar-title class="absolute-center">
+          {{ $route.name }}
+        </q-toolbar-title>
+        <q-btn
+          class="absolute-right q-pr-sm"
+          icon="account_circle"
+          to="/auth"
+          label="Login"
+          no-caps
+          flat
+          dense
+        />
       </q-toolbar>
     </q-header>
     <q-page-container>

@@ -4,6 +4,7 @@
       <q-item
         v-for="user in users"
         :key="user.id"
+        to="/chat"
         class="q-my-sm"
         clickable
         v-ripple
