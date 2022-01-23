@@ -1,0 +1,40 @@
+{
+  "users": {
+    "USERID1": {
+      "name": "Bahareh",
+      "email": "zeinali_bahareh@yahoo.com",
+      "omline": true
+    },
+    "USERID2": {
+      "name": "Yahya",
+      "email": "yahyahosseini@gmail.com",
+      "omline": false
+    }
+  },
+  "chats": {
+    "USERID1": {
+      "USERID2": {
+        "MESSAGEid1": {
+          "text": "Hey Jim, how are you?",
+          "from": "them"
+        },
+        "MESSAGEid2": {
+          "text": "doing fine, how r you?",
+          "from": "me"
+        }
+      }
+    },
+    "USERID2": {
+      "USERID1": {
+        "MESSAGEid1": {
+          "text": "Hey Jim, how are you?",
+          "from": "me"
+        },
+        "MESSAGEid2": {
+          "text": "doing fine, how r you?",
+          "from": "them"
+        }
+      }
+    }
+  }
+}

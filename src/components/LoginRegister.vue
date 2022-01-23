@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "LoginRegister",
   props: ["tab"],
@@ -51,14 +52,17 @@ export default {
     };
   },
   methods: {
+    ...mapActions("storeX", ["registerUser","loginUser"]),
     submitForm() {
-        if(this.tab=='Login'){
-            console.log('login');
-            
-        }else{
-            console.log('register');
-            
-        }
+      if (this.tab == "Login") {
+        this.loginUser(this.formData)
+      } else {
+        this.registerUser(this.formData);
+      }
+    },
+    onReset() {
+      this.email = "";
+      this.password = "";
     },
   },
 };

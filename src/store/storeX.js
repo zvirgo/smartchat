@@ -1,6 +1,35 @@
+import { firebaseAuth, firebaseDb } from "boot/firebase";
+
 const state = {};
 const mutation = {};
-const actions = {};
+const actions = {
+  registerUser({}, payload) {
+    firebaseAuth
+      .createUserWithEmailAndPassword(payload.email, payload.password)
+      .then((response) => {
+        console.log(response);
+        let userId = firebaseAuth.currentUser.uid;
+        firebaseDb.ref("/users" + userId).set({
+          name: payload.name,
+          email: payload.email,
+          online: true,
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  },
+  loginUser({},payload){
+    firebaseAuth
+      .signInWithEmailAndPassword(payload.email, payload.password)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+};
 const getters = {};
 
 export default {
