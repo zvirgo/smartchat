@@ -22,9 +22,9 @@ const mutations = {
   addMessage(state, payload) {
     state.messages[payload.messageId] = payload.messageDetails;
   },
-  clearMessages(state){
-    state.messages={}
-  }
+  clearMessages(state) {
+    state.messages = {};
+  },
 };
 const actions = {
   registerUser({}, payload) {
@@ -127,12 +127,18 @@ const actions = {
       });
     });
   },
-  firebaseStopGettingMessages({commit}) {
+  firebaseStopGettingMessages({ commit }) {
     if (messageRef) {
       messageRef.off("child_added");
-      commit('clearMessages')
+      commit("clearMessages");
     }
   },
+  firebaseSendMessage({}, payload) {
+		firebaseDb.ref('chats/' + state.userDetails.userId + '/' + payload.otherUserId).push(payload.message)
+
+		payload.message.from = 'them'
+		firebaseDb.ref('chats/' + payload.otherUserId + '/' + state.userDetails.userId).push(payload.message)
+	}
 };
 const getters = {
   users: (state) => {

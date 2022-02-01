@@ -38,9 +38,9 @@
 <script>
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "vuex";
-import mixinOtherUserDetails from '../mixins/mixin-other-user-details'
+import mixinOtherUserDetails from "../mixins/mixin-other-user-details";
 export default defineComponent({
-  mixins:[mixinOtherUserDetails],
+  mixins: [mixinOtherUserDetails],
   name: "Pagechat",
   data() {
     return {
@@ -49,17 +49,20 @@ export default defineComponent({
   },
   computed: {
     ...mapState("storeX", ["messages", "userDetails"]),
-    
   },
   methods: {
     ...mapActions("storeX", [
       "firebaseGetMessages",
       "firebaseStopGettingMessages",
+      "firebaseSendMessage",
     ]),
     sendMessage() {
-      this.messages.push({
-        text: this.newMessage,
-        from: "me",
+      this.firebaseSendMessage({
+        message: {
+          text: this.newMessage,
+          from: "me",
+        },
+        otherUserId: this.$route.params.otherUserId,
       });
     },
   },
