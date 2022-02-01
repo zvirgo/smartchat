@@ -35,34 +35,34 @@
 
 <script>
 import { defineComponent } from "vue";
+import { mapActions, mapState } from "vuex";
 export default defineComponent({
   name: "Pagechat",
   data() {
     return {
       newMessage: "",
-      messages: [
-        {
-          text: "Hey Jim, how are you?",
-          from: "me",
-        },
-        {
-          text: "doing fine, how r you?",
-          from: "them",
-        },
-        {
-          text: "Pretty good!",
-          from: "me",
-        },
-      ],
     };
   },
+  computed: {
+    ...mapState("storeX", ["messages"]),
+  },
   methods: {
+    ...mapActions("storeX", [
+      "firebaseGetMessages",
+      "firebaseStopGettingMessages",
+    ]),
     sendMessage() {
       this.messages.push({
         text: this.newMessage,
         from: "me",
       });
     },
+  },
+  mounted() {
+    this.firebaseGetMessages(this.$route.params.otherUserId);
+  },
+  unmounted() {
+    this.firebaseStopGettingMessages();
   },
 });
 </script>

@@ -1,8 +1,7 @@
-import { store } from 'quasar/wrappers'
-import { createStore } from 'vuex'
+import { store } from "quasar/wrappers";
+import { createStore } from "vuex";
 
-
-import storeX from './storeX'
+import storeX from "./storeX";
 
 /*
  * If not building with SSR mode, you can
@@ -16,13 +15,13 @@ import storeX from './storeX'
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
-      storeX
+      storeX,
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
-    strict: process.env.DEBUGGING
-  })
+    strict: process.env.DEBUGGING,
+  });
 
-  return Store
-})
+  return Store;
+});

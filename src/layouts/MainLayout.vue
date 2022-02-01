@@ -3,7 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-btn
-          v-if="$route.path === '/chat'"
+          v-if="$route.fullPath.includes('/chat')"
           to="/"
           icon="arrow_back"
           label="Back"

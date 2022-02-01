@@ -2,9 +2,9 @@
   <q-page class="q-pa-sm">
     <q-list separator>
       <q-item
-        v-for="user in users"
-        :key="user.id"
-        to="/chat"
+        v-for="(user, key) in users"
+        :key="key"
+        :to="`/chat/` + key"
         class="q-my-sm"
         clickable
         v-ripple
@@ -30,34 +30,15 @@
 
 <script>
 import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "PageIndex",
   data() {
-    return {
-      users: [
-        {
-          id: 1,
-          name: "Ruddy Jedrzej",
-          online: true,
-        },
-        {
-          id: 2,
-          name: "Mallorie Alessandrini",
-          online: false,
-        },
-        {
-          id: 3,
-          name: "Elisabetta Wicklen",
-          online: true,
-        },
-        {
-          id: 4,
-          name: "Seka Fawdrey",
-          online: false,
-        },
-      ],
-    };
+    return {};
+  },
+  computed: {
+    ...mapGetters("storeX", ["users"]),
   },
 });
 </script>

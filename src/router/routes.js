@@ -4,9 +4,9 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('src/pages/PageUsers.vue'), name: "SmartChat" },
-      { path: '/chat', component: () => import('src/pages/Pagechat.vue'), name: "Chat" },
-      { path: '/auth', component: () => import('src/pages/PageAuth.vue') , name: "Login"},
+      { path: '', component: () => import('pages/PageUsers.vue') },
+      { path: '/chat/:otherUserId', component: () => import('pages/PageChat.vue') },
+      { path: '/auth', component: () => import('pages/PageAuth.vue') }
     ]
   },
 
@@ -19,3 +19,6 @@ const routes = [
 ]
 
 export default routes
+
+
+
