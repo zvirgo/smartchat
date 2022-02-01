@@ -1,11 +1,13 @@
 <template>
   <q-page class="flex column">
-    <q-banner class="text-center bg-grey-4"> User is Offline </q-banner>
+    <q-banner v-if="!otherUserDetails.online" class="text-center bg-grey-4">
+      {{ otherUserDetails.name }} is Offline
+    </q-banner>
     <div class="q-pa-md column col justify-end">
       <q-chat-message
         v-for="message in messages"
         :key="message.text"
-        :name="message.from"
+        :name="message.from == 'me' ? userDetails.name : otherUserDetails.name"
         :text="[message.text]"
         :sent="message.from == 'me' ? true : false"
       />
@@ -36,7 +38,9 @@
 <script>
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "vuex";
+import mixinOtherUserDetails from '../mixins/mixin-other-user-details'
 export default defineComponent({
+  mixins:[mixinOtherUserDetails],
   name: "Pagechat",
   data() {
     return {
@@ -44,7 +48,8 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState("storeX", ["messages"]),
+    ...mapState("storeX", ["messages", "userDetails"]),
+    
   },
   methods: {
     ...mapActions("storeX", [
